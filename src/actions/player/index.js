@@ -128,7 +128,12 @@ export const activateIteratedTrack = (currentActiveTrackId, iterate) => (dispatc
     const randomActiveTrackId = getRandomTrack(playlist, currentActiveTrackId);
     dispatch(activateTrack(randomActiveTrackId));
   } else {
-    dispatch(togglePlayTrack(false));
+    console.log("Browse");
+    console.log(getState().browse);
+    const browserList = getState().browse["Tech House"];
+    const nextBrowseTrackId = getIteratedTrack(browserList, currentActiveTrackId, iterate);
+    dispatch(activateTrack(nextBrowseTrackId));
+    // dispatch(togglePlayTrack(false));
   }
 };
 
